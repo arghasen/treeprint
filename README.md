@@ -1,8 +1,7 @@
-treeprint - print ascii tree
+# treeprint `print ascii tree structure`
 
-OVERVIEW
+Written while learing about ADT Trees and Graphs! It was so boring to see the tree with the list so made the tree printer.
 
+It doesn't since it was not originally written for linux. lets hope i do port it some where in the future.
 
-HISTORY
-Tree print was orginally written during the Data Structure Programming of Trees.
 
