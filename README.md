@@ -1,4 +1,6 @@
-# treeprint `print ascii tree structure`
+# treeprint 
+
+print ascii tree structure
 
 Written while learing about ADT Trees and Graphs! It was so boring to see the tree with the list so made the tree printer.
 
