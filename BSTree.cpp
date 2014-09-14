@@ -5,6 +5,9 @@
 */
 
 #include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
 using namespace std;
 
 class BSTree {
@@ -15,38 +18,38 @@ private:
     Node *right;
     Node();
   }*Nodeptr;
-  
+
   Nodeptr root;
-  
+
 public:
   BSTree();
   BSTree(int [], int);
-  
+
   ~BSTree();
-  
+
   void destory(Nodeptr &);
   void insert(int , Nodeptr &);
   void remove(int, Nodeptr &);
-  
+
   void traverse(Nodeptr);
   void inorder(Nodeptr);
   void preorder(Nodeptr);
   void postorder(Nodeptr);
-  
+
   void printree(Nodeptr, char);
-  
+
   Nodeptr search(Nodeptr &, int);
-  
+
   Nodeptr findmin(Nodeptr);
   Nodeptr findmax(Nodeptr);
-  
+
   void menu(char ch='0');
 };
 
 int main() {
   int a[]= {29, 25, 14, 16, 9, 11, 7, 10, 12, 15, 27, 8};
   BSTree BST(a, 12);
-  
+
   BST.menu('6');
   return 0;
 }
@@ -70,7 +73,7 @@ BSTree::~BSTree() {
 void BSTree::destory(Nodeptr &root) {
   if(root->left!=NULL) destory(root->left);
   if(root->right!=NULL) destory(root->right);
-  
+
   delete root;
   root=NULL;
 }
@@ -90,7 +93,8 @@ void BSTree::insert(int data, Nodeptr &root) {
 void BSTree::remove(int info, Nodeptr &root) {
   if(root==NULL) {//empty pointer| tree
     cout<<"No not found !!";
-    getch();
+    getchar();
+    fflush(stdout);
     return;
   }
 
@@ -107,12 +111,12 @@ void BSTree::remove(int info, Nodeptr &root) {
     if(root->left==NULL) root=root->right;
     else if(root->right==NULL) root=root->left;
     delete temp;
-  }  
+  }
 }
 
 BSTree::Nodeptr BSTree::search(Nodeptr &root, int info) {
   if(root==NULL) return NULL; //empty pointer| tree
-  
+
   if(root->info==info) return root;
   else if(root->info>info) return search(root->left, info);
   else return search(root->right, info);
@@ -144,7 +148,7 @@ void BSTree::traverse(Nodeptr root) {
 
 void BSTree::preorder(Nodeptr root) {
   if(root==NULL) return;
-  
+
   cout<<root->info<<", ";
   preorder(root->left);
   preorder(root->right);
@@ -152,7 +156,7 @@ void BSTree::preorder(Nodeptr root) {
 
 void BSTree::inorder(Nodeptr root) {
   if(root==NULL) return;
-  
+
   inorder(root->left);
   cout<<root->info<<", ";
   inorder(root->right);
@@ -161,7 +165,7 @@ void BSTree::inorder(Nodeptr root) {
 void BSTree::postorder(Nodeptr root)
 {
   if(root==NULL) return;
-  
+
   postorder(root->left);
   postorder(root->right);
   cout<<root->info<<", ";
@@ -176,7 +180,7 @@ int i;
 int flag=0;
 int bab[10]={0,0,0,0,0, 0,0,0,0,0};
 
-#include "c:\h\istack.h"
+#include "stack.h"
 Stack path;
 
 void BSTree::printree(Nodeptr root, char pos='S') {
@@ -193,7 +197,7 @@ void BSTree::printree(Nodeptr root, char pos='S') {
   child=0;
   if(root->left!=NULL) child++;
   if(root->right!=NULL) child++;
-  
+
   xtab=tabs;
   if(child==2) {
     tabs++;
@@ -213,29 +217,29 @@ void BSTree::printree(Nodeptr root, char pos='S') {
     if(bab[i]==1) printf(" %c   ", 179);
     else printf("     ");
   }
-  
+
   if(level!=0) {
     cout<<level;
-    
+
     if(xchild == 2) cout<<(char)195;
     else cout<<char(192);
-    
+
     printf("%c%c%c",pos,196,196);
   }
 
   if(child!=0) cout<<"[+]";
   else printf("[%c]", 250);
-  
+
   printf("%d\n",root->info);
-  
+
   printree(root->left, 'L');
   printree(root->right, 'R');
-  
+
   if(xtab==tabs) {
     tabs--;
     flag=1;
   }
-  
+
   path.pop();
   level--;
 }
@@ -243,7 +247,7 @@ void BSTree::printree(Nodeptr root, char pos='S') {
 void BSTree::menu(char ch) {
   int data;
   for(;;ch=0) {
-    cls;
+    system("clear");
     cout<<"Binary Search Tree\n"
 	<<"\n1. Push"
 	<<"\n2. Search"
@@ -252,54 +256,54 @@ void BSTree::menu(char ch) {
 	<<"\n5. Pop"
 	<<"\n6. Traversal"
 	<<"\n\nEnter your choice: ";
-    
-    if(ch==0) ch=getch();
+
+    if(ch==0) ch=getchar();fflush(stdout);
     switch(ch) {
     case 13:
     case '1':
-      cls;
+      system("clear");
       cout<<"Enter any no: "; cin>>data;
       insert(data, root);
       break;
-      
+
     case '2':
-      cls;
+      system("clear");
       cout<<"No to be searched: "; cin>>data;
       Nodeptr temp;
       temp=search(root, data);
       if(temp!=NULL) cout<<temp->info<<" is found !!";
       else cout<<data<<" is not found !!";
-      getch();
+      getchar();fflush(stdout);
       break;
-      
+
     case '3':
-      cls;
+      system("clear");
       temp=findmin(root);
       if(temp!=NULL) cout<<temp->info<<" is min value !!";
       else cout<<"Tree is empty !!";
-      getch();
+      getchar();fflush(stdout);
       break;
-      
+
     case '4':
-      cls;
+      system("clear");
       temp=findmax(root);
       if(temp!=NULL) cout<<temp->info<<" is max value !!";
       else cout<<"Tree is empty !!";
-      getch();
+      getchar();fflush(stdout);
       break;
-      
+
     case '5':
-      cls;
+      system("clear");
       cout<<"No to be deleted: "; cin>>data;
       remove(data, root);
       break;
-      
+
     case '6':
-      cls;
+      system("clear");
       traverse(root);
-      getch();
+      getchar();fflush(stdout);
       break;
-      
+
     case 27:
       return;
     };

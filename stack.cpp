@@ -36,7 +36,7 @@ void Stack::push(int data) {
 }
 
 int Stack::pop() {
-  if(front==NULL) return NULL;
+  if(front==NULL) return 0;
   
   Nodeptr temp=front;
   front=front->link;

@@ -3,8 +3,6 @@
   Sun Nov 11 17:26:34 NPT 2008
 */
 
-#include "./stack/istack.h"
-
 int level=-1;
 int xtab;//tab backup
 int tabs=0;
